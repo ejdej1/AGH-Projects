@@ -1,5 +1,17 @@
 
+import java.util.Arrays;
+import java.util.List;
+
 public class lab11 {
+
+    public static double sum(List<? extends Number> list) {
+        double sum = 0;
+        for (Number n : list) {
+            sum += n.doubleValue();
+        }
+        return sum;
+    }
+
 
     public static void main (String args[]){
 
@@ -10,6 +22,9 @@ public class lab11 {
 
         long var1 = 1000000;
         long var2 = 1000000;
+
+        List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
+        List<Double> doubleList = Arrays.asList(1.1, 2.2, 3.3, 4.4, 5.5);
 
         AddingClass<Integer> test1 = new AddingClass<Integer> (3, 3);
         AddingClass<Double> test5 = new AddingClass<Double> (3.2, 3.2);
@@ -27,8 +42,12 @@ public class lab11 {
 
         BubbleClass2<Integer> test7 = new BubbleClass2<Integer>(array4);
         System.out.println("");
-
-
+        System.out.println("Testing Double case");
+        BubbleClass2<Double> test8 = new BubbleClass2<Double>(array2);
+        System.out.println("");
+        System.out.println("---------------");
+        System.out.println("Sum of intList: " + sum(intList));
+        System.out.println("Sum of doubleList: " + sum(doubleList));
     }
 
 
@@ -111,6 +130,18 @@ class BubbleClass2 <T extends Comparable<T> > {
         }
         System.out.println(" ");
 
+        if(array1 instanceof Double[]){
+            Double array2 [] = (Double []) array1;
+
+            for(int i=0; i<array2.length; i++){ 
+                while(true){ 
+                    if (array2[i] < 1){
+                        break;
+                    }
+                    array2[i] /= 10;
+                }
+            }
+        }
 
         for(int i=1; i<array1.length; i++){
             for(int j=0; j<array1.length-i; j++){
@@ -154,14 +185,27 @@ class BubbleClass2 <T extends Comparable<T> > {
                     tmp2_score = 0;
                 }
 
-                
+                if (array1 instanceof Double[]){
+                    Double array2 [] = (Double []) array1;
+                    
+                    if(array2[j] > array2[j+1]){
+                        tmp = array1[j+1];
+                        array1[j+1] = array1[j];
+                        array1[j] = tmp;
+                    }
+
+
+                }
         
             }
         }
 
         for (int i=0; i<array1.length; i++){
-            System.out.print(array1[i] + " ");
+            System.out.print(array1[i] + " | ");
         }
         System.out.println(" ");
     }
+
+
 }
+
