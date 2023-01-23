@@ -3,10 +3,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class java12 {
     public static void main(String args[])
         throws IOException {
+            
+            System.out.println("Enter the text: ");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             //String text = reader.readLine();
             String line;
@@ -31,26 +34,20 @@ public class java12 {
             for (int i=logFiles.length-1; i>0; i--){
                 File srcFile = logFiles[i-1];
                 File destFile = logFiles[i];
-                System.out.println("---> Source File" + srcFile);
-                System.out.println("---> Destination File" + destFile);
-                destFile.delete();
-                if(srcFile.renameTo(destFile)){
-                    destFile.delete();
-                    System.out.println("File renamed");
+                
+                if(srcFile.exists()){
+                    if(destFile.exists()){
+                        destFile.delete();
+                    }
+                    srcFile.renameTo(destFile);
                 }
-
-                System.out.println("Source File" + srcFile.getName());
-                System.out.println("Destination File" + destFile.exists());
             }
-            
-            File file = new File("C:/Users/stryc/Documents/GitHub/AGH-Projects/JAVA/exercises_from_laboratories/lab12/test/log0.txt");
-            
-                    if(file.createNewFile()){
+                    
                         FileWriter writer = new FileWriter("C:/Users/stryc/Documents/GitHub/AGH-Projects/JAVA/exercises_from_laboratories/lab12/test/log0.txt");
                         writer.write(text);
                         writer.close();
-                        System.out.println("File created");
-                    }        
+                       // System.out.println("File created");
+                           
             
             
             
