@@ -9,16 +9,21 @@ public class java12 {
     public static void main(String args[])
         throws IOException {
             
+            Scanner myObj = new Scanner(System.in);  
+            System.out.println("Enter the path: ");
+            String path = myObj.nextLine();
+
+
             System.out.println("Enter the text: ");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             //String text = reader.readLine();
             String line;
             String text = "";
-            createDirectory("C:/Users/stryc/Documents/GitHub/AGH-Projects/JAVA/exercises_from_laboratories/lab12/test");
+            createDirectory(path+ "/test");
             File [] logFiles = new File[6];
 
             for (int i=0; i<logFiles.length ;i++){
-                logFiles[i] = new File("C:/Users/stryc/Documents/GitHub/AGH-Projects/JAVA/exercises_from_laboratories/lab12/test/log"+ i +".txt");
+                logFiles[i] = new File(path + "/test/log"+ i +".txt");
             }
             while((line = reader.readLine()) != null){
                             if(line.isEmpty()){
@@ -43,7 +48,7 @@ public class java12 {
                 }
             }
                     
-                        FileWriter writer = new FileWriter("C:/Users/stryc/Documents/GitHub/AGH-Projects/JAVA/exercises_from_laboratories/lab12/test/log0.txt");
+                        FileWriter writer = new FileWriter(path +"/test/log0.txt");
                         writer.write(text);
                         writer.close();
                        // System.out.println("File created");
